@@ -2,13 +2,13 @@
 /**
  * Plugin Name: BuddyPress Global Unified search
  * Plugin URI:http://buddydev.com/plugins/bp-global-unified-search/
- * Version: 1.0.1
+ * Version: 1.0.2
  * Author: Brajesh Singh
  * Author URI: http://buddydev.com/members/sbrajesh
  * License: GPL
- * Last Updated: December 5, 2011
+ * Last Updated: December 22, 2012
  * Description: Global Unified search for BuddyPress 1.5
- * Requires BuddyPress 1.5 (alpha,beta,gamma,RC,trunk or stable release when available)
+ * Requires BuddyPress 1.5+ (alpha,beta,gamma,RC,trunk or stable release when available)
  * 
  */
 //setup site/search as the root component for pre 1.5 compatibility
@@ -24,6 +24,7 @@ class BPUnifiedsearch{
         add_filter('bp_core_exclude_pages',array(&$this,'remove_from_nav'));//remove search page from page navigation
         //title for search page
         add_filter('bp_modify_page_title',array(&$this,'get_title'),5,4);
+        add_filter('bp_search_form_action',array($this,'get_search_url'));
         
     }
     
@@ -79,6 +80,15 @@ class BPUnifiedsearch{
 
     }   
     
+   function get_search_url($current_url){
+       global $bp;
+       $page_id=$bp->pages->search->id;
+       if(empty($page_id))
+           return $current_url;
+       
+       return get_permalink($page_id);
+           
+   } 
 }
 
 //initialize

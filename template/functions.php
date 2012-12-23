@@ -123,7 +123,7 @@ function bpmag_show_blogs_search(){
   }
 
 //Hook Blogs results to search page if blogs comonent is active
- if(bp_is_active( 'blogs' ))
+ if(is_multisite()&&bp_is_active( 'blogs' ))
     add_action('advance-search','bpmag_show_blogs_search',10);
 
  //show forums search
