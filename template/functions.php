@@ -28,7 +28,11 @@ function bpmag_show_search_results(){
 }
  //modify the query string with the search term
 function bpmag_global_search_qs(){
-	return 'search_terms='.$_REQUEST['search-terms'];
+        if(isset($_REQUEST['search-terms']))
+            $term=$_REQUEST['search-terms'];
+        else
+            $term=$_REQUEST['s'];//account for adminbar search
+	return 'search_terms='.$term;
 }
 
 function bpmag_is_advance_search(){
