@@ -47,6 +47,7 @@ class BPUnifiedsearch{
         if(!defined('BP_SEARCH_SLUG'))
             define('BP_SEARCH_SLUG','search');//though we know it is set, just a safety bit
         
+            $bp->search=new stdClass();
             $bp->search->slug=BP_SEARCH_SLUG;
             $bp->search->has_directory=true;
             $bp->search->id='search';
