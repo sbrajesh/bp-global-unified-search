@@ -8,9 +8,8 @@
 			<?php do_action( 'bp_before_blog_search' ) ?>
 			<?php global $wp_query;
 				$wp_query->is_search=true;
-				$search_term=$_REQUEST['search-terms'];
-				if(empty($search_term))
-					$search_term=$_REQUEST['s'];
+				$search_term= bpmag_get_search_query();
+				
 				$wp_query->query("s=".$search_term);?>
 			<?php if ( have_posts() ) : ?>
             <?php while(have_posts()):the_post(); global $post;?>
